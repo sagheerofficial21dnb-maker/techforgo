@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { POSTS, CATEGORIES } from '../data/posts';
 import { PostCard } from '../components/PostCard';
 import { Sidebar } from '../components/Sidebar';
@@ -9,9 +9,12 @@ interface FrontPageProps {
 }
 
 export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit }) => {
+  const [layoutMode, setLayoutMode] = useState<'grid' | 'list'>('grid');
+  const [visibleCount, setVisibleCount] = useState<number>(6);
+
   const leadPost = POSTS[0];
   const spotlightPosts = POSTS.slice(1, 4);
-  const mainGridPosts = POSTS.slice(4, 8);
+  const mainFeedPosts = POSTS.slice(4, 4 + visibleCount);
 
   // Group posts by key categories for Category Feeds
   const aiPosts = POSTS.filter((p) => p.categorySlug === 'artificial-intelligence').slice(0, 2);
@@ -159,30 +162,98 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
         </div>
       </section>
 
-      {/* 3. Main Grid (70% Content, 30% Sidebar) */}
+      {/* 3. Main Inquiries Section (70% Content with Grid/List switcher, 30% Sidebar) */}
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-10 mb-16">
         <div className="lg:col-span-7">
-          <div className="flex items-baseline justify-between mb-6 pb-3 border-b border-[#E5E5E5]">
-            <h2 className="text-xl font-bold tracking-tight text-[#1A1A1A]">
-              Latest Engineering Inquiries
-            </h2>
-            <span className="text-xs text-[#666666]">
-              Updated Daily by Senior Editors
-            </span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-3 border-b border-[#E5E5E5]">
+            <div>
+              <h2 className="text-xl font-bold tracking-tight text-[#1A1A1A]">
+                Latest Engineering Inquiries
+              </h2>
+              <span className="text-xs text-[#666666]">
+                Updated Daily &middot; Showing {mainFeedPosts.length} of {POSTS.length - 4} Articles
+              </span>
+            </div>
+
+            {/* Grid vs List View Switcher */}
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <span className="text-[11px] font-semibold text-[#713F12] uppercase tracking-wider hidden sm:inline">
+                View:
+              </span>
+              <div className="inline-flex items-center p-1 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-lg shadow-2xs">
+                <button
+                  onClick={() => setLayoutMode('grid')}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                    layoutMode === 'grid'
+                      ? 'bg-[#0F172A] text-white shadow-xs'
+                      : 'text-[#713F12] hover:text-[#0F172A] hover:bg-[#FEF08A]'
+                  }`}
+                  title="Grid View"
+                  aria-label="Switch to Grid View"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                  </svg>
+                  <span>Grid</span>
+                </button>
+
+                <button
+                  onClick={() => setLayoutMode('list')}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                    layoutMode === 'list'
+                      ? 'bg-[#0F172A] text-white shadow-xs'
+                      : 'text-[#713F12] hover:text-[#0F172A] hover:bg-[#FEF08A]'
+                  }`}
+                  title="List View"
+                  aria-label="Switch to List View"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="8" y1="6" x2="21" y2="6" />
+                    <line x1="8" y1="12" x2="21" y2="12" />
+                    <line x1="8" y1="18" x2="21" y2="18" />
+                    <line x1="3" y1="6" x2="3.01" y2="6" />
+                    <line x1="3" y1="12" x2="3.01" y2="12" />
+                    <line x1="3" y1="18" x2="3.01" y2="18" />
+                  </svg>
+                  <span>List</span>
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {mainGridPosts.map((post) => (
-              <PostCard key={post.id} post={post} onNavigate={onNavigate} layout="grid" />
-            ))}
-          </div>
+          {/* Render in Grid or List layout */}
+          {layoutMode === 'grid' ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 transition-all duration-300">
+              {mainFeedPosts.map((post) => (
+                <PostCard key={post.id} post={post} onNavigate={onNavigate} layout="grid" />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4 transition-all duration-300">
+              {mainFeedPosts.map((post) => (
+                <PostCard key={post.id} post={post} onNavigate={onNavigate} layout="list" />
+              ))}
+            </div>
+          )}
 
-          <div className="mt-8 text-center pt-6 border-t border-[#E5E5E5]">
+          {/* Action Row: Load More or View Archive */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 pt-6 border-t border-[#E5E5E5]">
+            {visibleCount < POSTS.length - 4 && (
+              <button
+                onClick={() => setVisibleCount((prev) => Math.min(prev + 4, POSTS.length - 4))}
+                className="inline-flex items-center justify-center px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FEF08A] hover:bg-[#FDE047] border-2 border-[#EAB308] rounded shadow-xs transition-colors cursor-pointer"
+              >
+                + Load More Posts ({POSTS.length - 4 - visibleCount} Remaining)
+              </button>
+            )}
             <button
               onClick={() => onNavigate('/blog')}
-              className="inline-flex items-center justify-center px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FFFFFF] border border-[#E5E5E5] hover:border-[#0066CC] hover:text-[#0066CC] rounded shadow-xs transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#1A1A1A] bg-[#FFFFFF] border border-[#E5E5E5] hover:border-[#0066CC] hover:text-[#0066CC] rounded shadow-xs transition-colors cursor-pointer"
             >
-              Browse Complete 10-Post Journal Archive &rarr;
+              Browse Complete Journal Archive &rarr;
             </button>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { POSTS } from './data/posts';
 import { Header } from './components/Header';
 import { ArticleTicker } from './components/ArticleTicker';
 import { Footer } from './components/Footer';
+import { AnimatedCursor } from './components/AnimatedCursor';
 import { FrontPage } from './views/FrontPage';
 import { BlogArchive } from './views/BlogArchive';
 import { SinglePost } from './views/SinglePost';
@@ -86,6 +87,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#1A1A1A] antialiased selection:bg-[#F0F7FF] selection:text-[#0066CC]">
+      <AnimatedCursor />
       <Header
         currentPath={currentPath}
         onNavigate={navigateTo}
