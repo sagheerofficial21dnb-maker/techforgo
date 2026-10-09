@@ -53,7 +53,7 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
           <div className="lg:col-span-5 relative">
             <div className="rounded-lg overflow-hidden border-2 border-[#CA8A04] shadow-md bg-[#0F172A] group">
               <img
-                src="/src/assets/images/gemini_pro_arch_1791535252317.jpg"
+                src="/images/gemini_pro_arch_1791535252317.jpg"
                 alt="In-Depth Architectural Diagram and High-Performance Infrastructure Overview"
                 className="w-full h-52 sm:h-60 object-cover group-hover:scale-105 transition-transform duration-300"
               />
