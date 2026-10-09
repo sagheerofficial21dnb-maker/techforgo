@@ -1,0 +1,143 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1240px"
+    },
+    "color": {
+      "custom": true,
+      "customDuotone": false,
+      "customGradient": true,
+      "defaultGradients": false,
+      "defaultPalette": false,
+      "palette": [
+        {
+          "name": "Base Background",
+          "slug": "base",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "Surface White",
+          "slug": "surface",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "Text Primary",
+          "slug": "text-primary",
+          "color": "#1A1A1A"
+        },
+        {
+          "name": "Text Secondary",
+          "slug": "text-secondary",
+          "color": "#666666"
+        },
+        {
+          "name": "Text Muted",
+          "slug": "text-muted",
+          "color": "#666666"
+        },
+        {
+          "name": "Border Subtle",
+          "slug": "border",
+          "color": "#E5E5E5"
+        },
+        {
+          "name": "Primary Accent",
+          "slug": "accent",
+          "color": "#0066CC"
+        },
+        {
+          "name": "Accent Subtle",
+          "slug": "accent-subtle",
+          "color": "#F0F7FF"
+        }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "fontFamily": "\"Plus Jakarta Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+          "name": "Plus Jakarta Sans (UI & Headlines)",
+          "slug": "sans"
+        },
+        {
+          "fontFamily": "\"Source Serif 4\", Georgia, serif",
+          "name": "Source Serif 4 (Longform Reading)",
+          "slug": "serif"
+        },
+        {
+          "fontFamily": "\"JetBrains Mono\", monospace",
+          "name": "JetBrains Mono (Code & Data)",
+          "slug": "mono"
+        }
+      ],
+      "fontSizes": [
+        {
+          "name": "Small",
+          "slug": "small",
+          "size": "0.8125rem"
+        },
+        {
+          "name": "Normal",
+          "slug": "normal",
+          "size": "1rem"
+        },
+        {
+          "name": "Medium",
+          "slug": "medium",
+          "size": "1.125rem"
+        },
+        {
+          "name": "Large",
+          "slug": "large",
+          "size": "1.5rem"
+        },
+        {
+          "name": "Extra Large",
+          "slug": "x-large",
+          "size": "2.25rem"
+        },
+        {
+          "name": "Hero Headline",
+          "slug": "xx-large",
+          "size": "3rem"
+        }
+      ]
+    },
+    "spacing": {
+      "blockGap": true,
+      "margin": true,
+      "padding": true,
+      "units": ["px", "em", "rem", "vh", "vw", "%"]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--base)",
+      "text": "var(--wp--preset--color--text-primary)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--sans)",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "link": {
+        "color": "var(--wp--preset--color--accent)",
+        ":hover": {
+          "color": "#0052A3"
+        }
+      },
+      "heading": {
+        "color": "var(--wp--preset--color--text-primary)",
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--sans)",
+          "fontWeight": "700"
+        }
+      }
+    }
+  }
+}

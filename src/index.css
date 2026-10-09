@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-color: #FFFFFF;
+    --text-color: #1A1A1A;
+    --text-muted: #666666;
+    --border-color: #E5E5E5;
+    --accent-color: #0066CC;
+    --accent-hover: #0052A3;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+  }
+}
+
+.font-serif {
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', SFMono-Regular, monospace;
+}
+
+/* Continuous Marquee Ticker Animation */
+@keyframes tickerSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: tickerSlide 40s linear infinite;
+}
+
+.animate-ticker:hover,
+.animate-ticker:focus-within {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker {
+    animation: none;
+    overflow-x: auto;
+    width: 100%;
+    scrollbar-width: thin;
+  }
+}

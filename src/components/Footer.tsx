@@ -1,0 +1,169 @@
+import React from 'react';
+
+interface FooterProps {
+  onNavigate: (path: string) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="mt-auto bg-[#FEF08A] border-t-2 border-[#EAB308] pt-14 pb-10 shadow-xs">
+      <div className="max-w-[1240px] mx-auto px-5">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
+          {/* Column 1: Brand & Editorial Mission */}
+          <div className="md:col-span-2 pr-0 md:pr-8">
+            <button
+              onClick={() => onNavigate('/')}
+              className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight text-[#1A1A1A] mb-3 cursor-pointer group"
+            >
+              <img
+                src="/favicon.svg"
+                alt="TechForGo Site Logo"
+                className="w-8 h-8 rounded-lg shadow-xs group-hover:scale-105 transition-transform shrink-0"
+              />
+              <span className="text-xl">
+                <span className="text-[#0F172A] font-black">tech</span><span className="text-[#1E293B] font-extrabold">forgo</span>
+              </span>
+            </button>
+            <p className="text-[13px] leading-relaxed text-[#422006] mb-4 max-w-lg">
+              TechForGo is an independent peer-reviewed technology journal delivering in-depth architectural analysis, hardware benchmarks, cybersecurity diagnostics, and cloud infrastructure teardowns for engineers and researchers.
+            </p>
+            <div className="flex flex-wrap items-center gap-2 text-xs text-[#713F12]">
+              <span className="font-semibold">ISSN 2831-9042</span>
+              <span aria-hidden="true">&middot;</span>
+              <span>Open Editorial Board</span>
+              <span aria-hidden="true">&middot;</span>
+              <span>San Francisco &amp; London</span>
+            </div>
+          </div>
+
+          {/* Column 2: Subject Areas */}
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-wider text-[#1A1A1A] mb-4">
+              Coverage Tracks
+            </h4>
+            <ul className="space-y-2.5 text-sm font-semibold text-[#1A1A1A]">
+              <li>
+                <button
+                  onClick={() => onNavigate('/category/artificial-intelligence')}
+                  className="hover:text-[#0066CC] transition-colors cursor-pointer text-left"
+                >
+                  Artificial Intelligence
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/category/cloud-infrastructure')}
+                  className="hover:text-[#0066CC] transition-colors cursor-pointer text-left"
+                >
+                  Cloud &amp; DevOps
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/category/cybersecurity')}
+                  className="hover:text-[#0066CC] transition-colors cursor-pointer text-left"
+                >
+                  Cyber Defense
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/category/hardware-architecture')}
+                  className="hover:text-[#0066CC] transition-colors cursor-pointer text-left"
+                >
+                  Hardware Architecture
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/category/software-engineering')}
+                  className="hover:text-[#0066CC] transition-colors cursor-pointer text-left"
+                >
+                  Software Engineering
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Direct Contact & Editorial Office */}
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-wider text-[#1A1A1A] mb-4">
+              Editorial Contact
+            </h4>
+            <div className="space-y-2.5 text-xs text-[#422006] leading-relaxed mb-4">
+              <p>
+                <strong className="text-[#1A1A1A] block font-bold">Email Desk:</strong>
+                <a href="mailto:sagheerofficial21dnb@gmail.com" className="text-[#0066CC] font-bold hover:underline break-all">
+                  sagheerofficial21dnb@gmail.com
+                </a>
+              </p>
+              <p>
+                <strong className="text-[#1A1A1A] block font-bold">Phone / Helpline:</strong>
+                <a href="tel:03069256639" className="text-[#1A1A1A] font-bold hover:text-[#0066CC]">
+                  03069256639
+                </a>
+              </p>
+              <p>
+                <strong className="text-[#1A1A1A] block font-bold">Newsroom Hours:</strong>
+                <span>Mon–Fri: 9:00 AM – 6:00 PM</span>
+              </p>
+            </div>
+            <div>
+              <button
+                onClick={() => onNavigate('/contact')}
+                className="text-xs font-black text-[#0F172A] hover:underline cursor-pointer"
+              >
+                Send Editorial Message &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom Bar with Complete Legal Links */}
+        <div className="pt-6 border-t border-[#EAB308] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#713F12]">
+          <div className="font-medium">
+            &copy; {currentYear} TechForGo. All editorial rights reserved.
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 font-semibold text-[#1A1A1A]">
+            <button
+              onClick={() => onNavigate('/about')}
+              className="hover:text-[#0066CC] transition-colors cursor-pointer"
+            >
+              About Us
+            </button>
+            <span aria-hidden="true">&middot;</span>
+            <button
+              onClick={() => onNavigate('/contact')}
+              className="hover:text-[#0066CC] transition-colors cursor-pointer"
+            >
+              Contact Us
+            </button>
+            <span aria-hidden="true">&middot;</span>
+            <button
+              onClick={() => onNavigate('/privacy-policy')}
+              className="hover:text-[#0066CC] transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
+            <span aria-hidden="true">&middot;</span>
+            <button
+              onClick={() => onNavigate('/terms')}
+              className="hover:text-[#0066CC] transition-colors cursor-pointer"
+            >
+              Terms &amp; Conditions
+            </button>
+            <span aria-hidden="true">&middot;</span>
+            <button
+              onClick={() => onNavigate('/disclaimer')}
+              className="hover:text-[#0066CC] transition-colors cursor-pointer"
+            >
+              Disclaimer
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
