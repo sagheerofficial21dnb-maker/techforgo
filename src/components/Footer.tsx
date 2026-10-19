@@ -15,16 +15,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="md:col-span-2 pr-0 md:pr-8">
             <button
               onClick={() => onNavigate('/')}
-              className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight text-[#1A1A1A] mb-3 cursor-pointer group"
+              className="flex items-center gap-3 mb-4 cursor-pointer group text-left"
+              aria-label="TechForGo Home"
             >
               <img
                 src="/favicon.svg"
                 alt="TechForGo Site Logo"
-                className="w-8 h-8 rounded-lg shadow-xs group-hover:scale-105 transition-transform shrink-0"
+                className="w-10 h-10 rounded-lg drop-shadow-sm group-hover:scale-105 transition-transform shrink-0"
               />
-              <span className="text-xl">
-                <span className="text-[#991B1B] font-black">tech</span><span className="text-[#1A1A1A] font-extrabold">forgo</span>
-              </span>
+              <div className="flex flex-col">
+                <div className="flex items-center tracking-tight leading-none text-2xl font-black">
+                  <span className="text-[#991B1B] tracking-tight">TECH</span>
+                  <span className="text-[#1A1A1A] tracking-tight">FORGO</span>
+                  <span className="w-2 h-2 rounded-full bg-[#DC2626] ml-1.5 inline-block"></span>
+                </div>
+                <span className="text-[10px] uppercase font-bold tracking-[0.18em] text-[#7F1D1D] mt-1">
+                  Technology &amp; Computing Insights
+                </span>
+              </div>
             </button>
             <p className="text-[13px] leading-relaxed text-[#4C0519] mb-4 max-w-lg">
               TechForGo is an independent peer-reviewed technology journal delivering in-depth architectural analysis, hardware benchmarks, cybersecurity diagnostics, and cloud infrastructure teardowns for engineers and researchers.

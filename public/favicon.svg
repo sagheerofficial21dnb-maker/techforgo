@@ -1,60 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <!-- Background Gradient: Deep Obsidian Midnight -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1A0D10"/>
-      <stop offset="45%" stop-color="#111116"/>
-      <stop offset="100%" stop-color="#09090C"/>
+    <!-- Rich Crimson-Ruby Gradient -->
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DC2626"/>
+      <stop offset="45%" stop-color="#B91C1C"/>
+      <stop offset="100%" stop-color="#7F1D1D"/>
     </linearGradient>
 
-    <!-- Border Glow Gradient -->
-    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#DC2626" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="#991B1B" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.7"/>
+    <!-- Radiant Gold Rim Gradient -->
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="35%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
     </linearGradient>
 
-    <!-- Crimson Tech "T" Gradient -->
-    <linearGradient id="tGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FF3856"/>
-      <stop offset="40%" stop-color="#E11D48"/>
-      <stop offset="100%" stop-color="#BE123C"/>
+    <!-- Gold Accent Gradient -->
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="40%" stop-color="#FDE047"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
     </linearGradient>
 
-    <!-- Dynamic "GO" Chevron Gradient -->
-    <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FDE047"/>
-      <stop offset="40%" stop-color="#F59E0B"/>
-      <stop offset="100%" stop-color="#D97706"/>
-    </linearGradient>
-
-    <!-- Inner Core Glow Filter -->
-    <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000000" flood-opacity="0.6"/>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#450A0A" flood-opacity="0.5"/>
     </filter>
   </defs>
 
-  <!-- Base Icon Container (Rounded Squircle) -->
-  <rect width="64" height="64" rx="16" fill="url(#bgGrad)"/>
-  <rect x="1" y="1" width="62" height="62" rx="15" fill="none" stroke="url(#borderGrad)" stroke-width="1.75"/>
+  <!-- Hexagonal Tech Shield Container -->
+  <!-- Rounded corner hexagon: Top, Top-Right, Bottom-Right, Bottom, Bottom-Left, Top-Left -->
+  <path d="M32 4L56 16V44L32 58L8 44V16L32 4Z" 
+        fill="url(#shieldGrad)" 
+        stroke="url(#goldRim)" 
+        stroke-width="2.5" 
+        stroke-linejoin="round"/>
 
-  <!-- Subtle Ambient Glow -->
-  <circle cx="22" cy="22" r="14" fill="#DC2626" opacity="0.18"/>
-  <circle cx="44" cy="32" r="14" fill="#F59E0B" opacity="0.16"/>
+  <!-- Inner Subtle Hexagon Inset -->
+  <path d="M32 8L52 18V42L32 54L12 42V18L32 8Z" 
+        fill="none" 
+        stroke="#FFFFFF" 
+        stroke-width="1" 
+        stroke-opacity="0.18" 
+        stroke-linejoin="round"/>
 
-  <!-- Content Group with Drop Shadow -->
-  <g filter="url(#shadowFilter)">
-    <!-- Tech "T" Emblem -->
-    <!-- Top Horizontal Bar -->
-    <path d="M10 16.5C10 14.567 11.567 13 13.5 13H33.5C35.433 13 37 14.567 37 16.5V20.5C37 22.433 35.433 24 33.5 24H27V48.5C27 50.433 25.433 52 23.5 52H21.5C19.567 52 18 50.433 18 48.5V24H13.5C11.567 24 10 22.433 10 20.5V16.5Z" fill="url(#tGrad)"/>
+  <!-- Main Symbol Group with Soft Drop Shadow -->
+  <g filter="url(#softGlow)">
+    <!-- Bold Tech "T" (Pure Optic White) -->
+    <!-- Top Bar -->
+    <path d="M16 19C16 17.8954 16.8954 17 18 17H40C41.1046 17 42 17.8954 42 19V24C42 25.1046 41.1046 26 40 26H34V46C34 47.1046 33.1046 48 32 48H26C24.8954 48 24 47.1046 24 46V26H18C16.8954 26 16 25.1046 16 24V19Z" 
+          fill="#FFFFFF"/>
 
-    <!-- T Stem Inner Circuit Accent Line -->
-    <rect x="21.5" y="27" width="2" height="18" rx="1" fill="#FFFFFF" opacity="0.85"/>
+    <!-- Dynamic "GO" Chevron (Vibrant Gold) pointing Forward -->
+    <path d="M38 27L48 35L38 43L42 47L56 35L42 23L38 27Z" 
+          fill="url(#goldAccent)"/>
 
-    <!-- Dynamic Forward "GO" Chevron -->
-    <path d="M34 20L44 32L34 44L39.5 49.5L54 32L39.5 14.5L34 20Z" fill="url(#arrowGrad)"/>
-
-    <!-- Speed Pulse Core -->
-    <circle cx="44" cy="32" r="2.2" fill="#FFFFFF"/>
+    <!-- Energy Tech Core Node -->
+    <circle cx="29" cy="21.5" r="1.8" fill="#DC2626"/>
   </g>
 </svg>

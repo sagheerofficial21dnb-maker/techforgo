@@ -38,17 +38,27 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onSearc
           <div className="shrink-0 flex items-center">
             <button
               onClick={() => onNavigate('/')}
-              className="flex items-center gap-2.5 text-xl font-extrabold tracking-tight text-[#1A1A1A] whitespace-nowrap cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#991B1B] group"
+              className="flex items-center gap-3 text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#991B1B] rounded-lg p-1 group"
+              aria-label="TechForGo Home"
             >
-              {/* Site Favicon Logo */}
-              <img
-                src="/favicon.svg"
-                alt="TechForGo Site Logo"
-                className="w-8 h-8 rounded-lg shadow-xs group-hover:scale-105 transition-transform shrink-0"
-              />
-              <span className="text-xl">
-                <span className="text-[#991B1B] font-black">tech</span><span className="text-[#1A1A1A] font-extrabold">forgo</span>
-              </span>
+              {/* Site Logo Emblem */}
+              <div className="relative shrink-0">
+                <img
+                  src="/favicon.svg"
+                  alt="TechForGo Site Logo"
+                  className="w-9 h-9 rounded-lg drop-shadow-sm group-hover:scale-105 group-hover:rotate-1 transition-all duration-300 shrink-0"
+                />
+              </div>
+              <div className="flex flex-col">
+                <div className="flex items-center tracking-tight leading-none text-xl sm:text-[22px] font-black">
+                  <span className="text-[#991B1B] tracking-tight">TECH</span>
+                  <span className="text-[#1A1A1A] tracking-tight">FORGO</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626] ml-1.5 ring-2 ring-[#FCA5A5] inline-block animate-pulse"></span>
+                </div>
+                <span className="text-[9px] uppercase font-bold tracking-[0.18em] text-[#7F1D1D] mt-0.5 hidden sm:block">
+                  Computing &amp; Architecture
+                </span>
+              </div>
             </button>
           </div>
 
