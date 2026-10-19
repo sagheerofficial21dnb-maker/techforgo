@@ -37,7 +37,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType, onNavigate, on
       {/* Two-Column 70/30 Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-10">
         <main className="lg:col-span-7 min-w-0">
-          <article className="bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl p-6 sm:p-10 leading-relaxed text-[#1A1A1A] shadow-xs">
+          <article className="bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl p-6 sm:p-10 leading-relaxed text-[#1A1A1A] shadow-xs transition-colors duration-300">
             
             {/* 1. ABOUT US PAGE */}
             {pageType === 'about' && (

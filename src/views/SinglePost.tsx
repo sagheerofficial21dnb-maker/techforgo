@@ -375,7 +375,7 @@ export const SinglePost: React.FC<SinglePostProps> = ({ post, onNavigate, onSear
                 {/* Existing comments list */}
                 <div className="space-y-6 mb-10">
                   {comments.map((c) => (
-                    <div key={c.id} className="p-5 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl shadow-xs">
+                    <div key={c.id} className="p-5 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300">
                       <div className="flex items-center gap-3 mb-2.5">
                         <img src={c.avatar} alt={c.author} width={28} height={28} className="w-7 h-7 rounded-full object-cover border border-[#CA8A04]" />
                         <div>
@@ -389,7 +389,7 @@ export const SinglePost: React.FC<SinglePostProps> = ({ post, onNavigate, onSear
                 </div>
 
                 {/* Leave a reply form */}
-                <div className="p-6 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl shadow-xs">
+                <div className="p-6 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300">
                   <h4 className="text-sm font-bold text-[#1A1A1A] mb-1">
                     Submit Peer Comment
                   </h4>
@@ -408,7 +408,7 @@ export const SinglePost: React.FC<SinglePostProps> = ({ post, onNavigate, onSear
                         placeholder="e.g. Dr. Robert Vance, Berkeley AI Labs"
                         value={commentAuthor}
                         onChange={(e) => setCommentAuthor(e.target.value)}
-                        className="w-full px-3 py-2 text-sm bg-white border border-[#CA8A04] rounded-md text-[#1A1A1A] outline-none focus:border-[#0F172A]"
+                        className="w-full px-3 py-2 text-sm bg-white border border-[#CA8A04] rounded-md text-[#1A1A1A] outline-none focus:border-[#991B1B]"
                       />
                     </div>
                     <div>
@@ -421,12 +421,12 @@ export const SinglePost: React.FC<SinglePostProps> = ({ post, onNavigate, onSear
                         placeholder="Detail your inquiry or peer observation..."
                         value={commentText}
                         onChange={(e) => setCommentText(e.target.value)}
-                        className="w-full px-3 py-2 text-sm bg-white border border-[#CA8A04] rounded-md text-[#1A1A1A] outline-none focus:border-[#0F172A]"
+                        className="w-full px-3 py-2 text-sm bg-white border border-[#CA8A04] rounded-md text-[#1A1A1A] outline-none focus:border-[#991B1B]"
                       />
                     </div>
                     <button
                       type="submit"
-                      className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0F172A] hover:bg-black rounded transition-colors cursor-pointer shadow-xs"
+                      className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0F172A] hover:bg-[#991B1B] rounded transition-colors cursor-pointer shadow-xs"
                     >
                       Post Comment
                     </button>

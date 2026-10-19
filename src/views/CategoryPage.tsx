@@ -29,10 +29,10 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug, onNavi
         onNavigate={onNavigate}
       />
 
-      <header className="mb-8 p-6 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl shadow-xs flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <header className="mb-8 p-6 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs text-[#713F12] mb-1.5">
-            <span className="font-bold uppercase tracking-wider text-[#0F172A]">Discipline Archive</span>
+            <span className="font-bold uppercase tracking-wider text-[#991B1B]">Discipline Archive</span>
             <span aria-hidden="true">&middot;</span>
             <span>{matchingPosts.length} Technical Dispatches</span>
           </div>

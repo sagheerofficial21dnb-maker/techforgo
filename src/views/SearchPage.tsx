@@ -38,10 +38,10 @@ export const SearchPage: React.FC<SearchPageProps> = ({ initialQuery, onNavigate
         onNavigate={onNavigate}
       />
 
-      <header className="mb-8 p-6 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl shadow-xs flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <header className="mb-8 p-6 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-2 text-xs text-[#713F12] mb-1.5">
-            <span className="font-bold uppercase tracking-wider text-[#0F172A]">Index Query</span>
+            <span className="font-bold uppercase tracking-wider text-[#991B1B]">Index Query</span>
             <span aria-hidden="true">&middot;</span>
             <span>{matchingPosts.length} Matching Analyses</span>
           </div>
@@ -55,11 +55,11 @@ export const SearchPage: React.FC<SearchPageProps> = ({ initialQuery, onNavigate
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search alternative term..."
-              className="flex-1 px-3 py-1.5 text-xs bg-white border border-[#CA8A04] rounded-md text-[#1A1A1A] outline-none focus:border-[#0F172A]"
+              className="flex-1 px-3 py-1.5 text-xs bg-white border border-[#CA8A04] rounded-md text-[#1A1A1A] outline-none focus:border-[#991B1B]"
             />
             <button
               type="submit"
-              className="px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0F172A] hover:bg-black rounded-md transition-colors cursor-pointer shadow-xs"
+              className="px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0F172A] hover:bg-[#991B1B] rounded-md transition-colors cursor-pointer shadow-xs"
             >
               Search
             </button>

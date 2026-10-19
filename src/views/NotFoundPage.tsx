@@ -21,8 +21,8 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate, onSearch
 
   return (
     <div className="max-w-[1240px] mx-auto px-5 py-12">
-      <div className="max-w-[760px] mx-auto text-center mb-12 p-8 sm:p-12 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl shadow-xs">
-        <span className="text-6xl font-black text-[#0F172A] tracking-tight block mb-2">
+      <div className="max-w-[760px] mx-auto text-center mb-12 p-8 sm:p-12 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300">
+        <span className="text-6xl font-black text-[#991B1B] tracking-tight block mb-2">
           404
         </span>
         <h1 className="text-3xl font-extrabold text-[#1A1A1A] mb-3">
@@ -38,11 +38,11 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate, onSearch
             placeholder="Search the TechForGo library (e.g. eBPF, Quantum)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 px-3.5 py-2 text-sm bg-white border border-[#CA8A04] rounded-md text-[#1A1A1A] outline-none focus:border-[#0F172A]"
+            className="flex-1 px-3.5 py-2 text-sm bg-white border border-[#CA8A04] rounded-md text-[#1A1A1A] outline-none focus:border-[#991B1B]"
           />
           <button
             type="submit"
-            className="px-5 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#0F172A] hover:bg-black rounded-md transition-colors cursor-pointer shadow-xs"
+            className="px-5 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#0F172A] hover:bg-[#991B1B] rounded-md transition-colors cursor-pointer shadow-xs"
           >
             Search
           </button>

@@ -86,7 +86,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#1A1A1A] antialiased selection:bg-[#F0F7FF] selection:text-[#0066CC]">
+    <div className="min-h-screen flex flex-col bg-[#FEFCE8] text-[#1A1A1A] antialiased selection:bg-[#FEE2E2] selection:text-[#991B1B]">
       <AnimatedCursor />
       <Header
         currentPath={currentPath}

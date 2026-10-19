@@ -23,8 +23,8 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
 
   return (
     <div className="max-w-[1240px] mx-auto px-5 py-6">
-      {/* 1. Hero Introduction Banner (Yellow Box with Professional Architecture Image) */}
-      <section className="mb-8 p-6 sm:p-8 bg-[#FEF08A] border-2 border-[#EAB308] rounded-xl shadow-xs">
+      {/* 1. Hero Introduction Banner (Box with Professional Architecture Image - turns light yellow on hover) */}
+      <section className="mb-8 p-6 sm:p-8 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div className="lg:col-span-7">
             <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#713F12] block mb-1.5">
@@ -39,13 +39,13 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
             <div className="flex flex-wrap items-center gap-3 text-xs">
               <button
                 onClick={() => onNavigate('/blog')}
-                className="px-4 py-2 font-bold uppercase tracking-wider text-white bg-[#0F172A] hover:bg-black rounded transition-colors cursor-pointer shadow-xs"
+                className="px-4 py-2 font-bold uppercase tracking-wider text-white bg-[#0F172A] hover:bg-[#991B1B] rounded transition-colors cursor-pointer shadow-xs"
               >
                 Browse 10-Article Journal &rarr;
               </button>
               <button
                 onClick={() => onNavigate('/about')}
-                className="px-4 py-2 font-bold text-[#1A1A1A] bg-white border border-[#CA8A04] hover:bg-[#FEF9C3] rounded transition-colors cursor-pointer"
+                className="px-4 py-2 font-bold text-[#1A1A1A] bg-white border border-[#CA8A04] hover:bg-[#FEF08A] rounded transition-colors cursor-pointer"
               >
                 Our Editorial Charter
               </button>
@@ -72,8 +72,8 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
         </div>
       </section>
 
-      {/* Featured Lead Story (Yellow Box) */}
-      <section className="bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl overflow-hidden mb-12 shadow-xs">
+      {/* Featured Lead Story (Article Box - turns light yellow on hover) */}
+      <section className="bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl overflow-hidden mb-12 shadow-xs transition-colors duration-300 group">
         <div className="grid grid-cols-1 lg:grid-cols-12">
           {/* Media 7 cols on lg */}
           <div className="lg:col-span-7 bg-[#F5F5F5] relative overflow-hidden">
@@ -107,7 +107,7 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
             <h2 className="text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-[#1A1A1A] mb-3 text-balance">
               <button
                 onClick={() => onNavigate(`/post/${leadPost.slug}`)}
-                className="hover:text-[#0066CC] transition-colors cursor-pointer text-left"
+                className="hover:text-[#991B1B] transition-colors cursor-pointer text-left"
               >
                 {leadPost.title}
               </button>
@@ -117,7 +117,7 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
               {leadPost.deck}
             </p>
 
-            <div className="pt-4 border-t border-[#EAB308] flex items-center justify-between text-xs text-[#713F12]">
+            <div className="pt-4 border-t border-[#EAB308]/60 flex items-center justify-between text-xs text-[#713F12]">
               <div className="flex items-center gap-2.5">
                 <img
                   src={leadPost.author.avatar}
@@ -128,7 +128,7 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
               </div>
               <button
                 onClick={() => onNavigate(`/post/${leadPost.slug}`)}
-                className="font-bold text-[#0F172A] hover:underline cursor-pointer"
+                className="font-bold text-[#0F172A] hover:text-[#991B1B] hover:underline cursor-pointer"
               >
                 Read Full Teardown &rarr;
               </button>
@@ -277,22 +277,22 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* AI Track */}
-          <div className="p-5 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl shadow-xs">
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#EAB308]">
+          <div className="p-5 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#EAB308]/60">
               <h3 className="text-sm font-bold text-[#1A1A1A]">Artificial Intelligence</h3>
               <button
                 onClick={() => onNavigate('/category/artificial-intelligence')}
-                className="text-[11px] font-bold text-[#0F172A] hover:underline cursor-pointer"
+                className="text-[11px] font-bold text-[#0F172A] hover:text-[#991B1B] hover:underline cursor-pointer"
               >
                 View Track &rarr;
               </button>
             </div>
             <div className="space-y-4">
               {aiPosts.map((post) => (
-                <div key={post.id}>
+                <div key={post.id} className="p-1 rounded transition-colors">
                   <button
                     onClick={() => onNavigate(`/post/${post.slug}`)}
-                    className="text-xs font-bold text-[#1A1A1A] hover:text-[#0066CC] transition-colors text-left line-clamp-2 block mb-1 cursor-pointer"
+                    className="text-xs font-bold text-[#1A1A1A] hover:text-[#991B1B] transition-colors text-left line-clamp-2 block mb-1 cursor-pointer"
                   >
                     {post.title}
                   </button>
@@ -303,22 +303,22 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
           </div>
 
           {/* Cloud Track */}
-          <div className="p-5 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl shadow-xs">
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#EAB308]">
+          <div className="p-5 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#EAB308]/60">
               <h3 className="text-sm font-bold text-[#1A1A1A]">Cloud &amp; DevOps</h3>
               <button
                 onClick={() => onNavigate('/category/cloud-infrastructure')}
-                className="text-[11px] font-bold text-[#0F172A] hover:underline cursor-pointer"
+                className="text-[11px] font-bold text-[#0F172A] hover:text-[#991B1B] hover:underline cursor-pointer"
               >
                 View Track &rarr;
               </button>
             </div>
             <div className="space-y-4">
               {cloudPosts.map((post) => (
-                <div key={post.id}>
+                <div key={post.id} className="p-1 rounded transition-colors">
                   <button
                     onClick={() => onNavigate(`/post/${post.slug}`)}
-                    className="text-xs font-bold text-[#1A1A1A] hover:text-[#0066CC] transition-colors text-left line-clamp-2 block mb-1 cursor-pointer"
+                    className="text-xs font-bold text-[#1A1A1A] hover:text-[#991B1B] transition-colors text-left line-clamp-2 block mb-1 cursor-pointer"
                   >
                     {post.title}
                   </button>
@@ -329,26 +329,26 @@ export const FrontPage: React.FC<FrontPageProps> = ({ onNavigate, onSearchSubmit
           </div>
 
           {/* Security Track */}
-          <div className="p-5 bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl shadow-xs">
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#EAB308]">
+          <div className="p-5 bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl shadow-xs transition-colors duration-300">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#EAB308]/60">
               <h3 className="text-sm font-bold text-[#1A1A1A]">Cyber Defense</h3>
               <button
                 onClick={() => onNavigate('/category/cybersecurity')}
-                className="text-[11px] font-bold text-[#0F172A] hover:underline cursor-pointer"
+                className="text-[11px] font-bold text-[#0F172A] hover:text-[#991B1B] hover:underline cursor-pointer"
               >
                 View Track &rarr;
               </button>
             </div>
             <div className="space-y-4">
               {securityPosts.map((post) => (
-                <div key={post.id}>
+                <div key={post.id} className="p-1 rounded transition-colors">
                   <button
                     onClick={() => onNavigate(`/post/${post.slug}`)}
-                    className="text-xs font-bold text-[#1A1A1A] hover:text-[#0066CC] transition-colors text-left line-clamp-2 block mb-1 cursor-pointer"
+                    className="text-xs font-bold text-[#1A1A1A] hover:text-[#991B1B] transition-colors text-left line-clamp-2 block mb-1 cursor-pointer"
                   >
                     {post.title}
                   </button>
-                  <span className="text-[11px] text-[#666666]">{post.date} &middot; {post.readTime}</span>
+                  <span className="text-[11px] text-[#713F12]">{post.date} &middot; {post.readTime}</span>
                 </div>
               ))}
             </div>

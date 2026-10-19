@@ -8,7 +8,7 @@ interface AuthorBoxProps {
 
 export const AuthorBox: React.FC<AuthorBoxProps> = ({ author, onNavigate }) => {
   return (
-    <section className="bg-[#FEF9C3] border-2 border-[#EAB308] rounded-xl p-6 my-10 flex flex-col sm:flex-row gap-5 items-start shadow-xs">
+    <section className="bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308] hover:border-[#CA8A04] rounded-xl p-6 my-10 flex flex-col sm:flex-row gap-5 items-start shadow-xs transition-colors duration-300">
       <div className="shrink-0">
         <img
           src={author.avatar}
@@ -32,7 +32,7 @@ export const AuthorBox: React.FC<AuthorBoxProps> = ({ author, onNavigate }) => {
         <div>
           <button
             onClick={() => onNavigate('/blog')}
-            className="text-xs font-bold text-[#0F172A] hover:underline cursor-pointer"
+            className="text-xs font-bold text-[#991B1B] hover:underline cursor-pointer"
           >
             Browse all articles by {author.name.split(' ')[0]} &rarr;
           </button>

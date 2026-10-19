@@ -10,7 +10,7 @@ interface PostCardProps {
 export const PostCard: React.FC<PostCardProps> = ({ post, onNavigate, layout = 'grid' }) => {
   if (layout === 'list') {
     return (
-      <article className="flex flex-col sm:flex-row bg-[#FEF9C3] border border-[#EAB308] rounded-xl overflow-hidden hover:border-[#CA8A04] hover:shadow-md transition-all duration-200 group">
+      <article className="flex flex-col sm:flex-row bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308]/60 hover:border-[#CA8A04] rounded-xl overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 group">
         {/* List Thumbnail */}
         <button
           onClick={() => onNavigate(`/post/${post.slug}`)}
@@ -44,7 +44,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post, onNavigate, layout = '
           <h3 className="text-base sm:text-lg font-bold leading-snug text-[#1A1A1A] mb-2">
             <button
               onClick={() => onNavigate(`/post/${post.slug}`)}
-              className="text-left hover:text-[#0066CC] transition-colors cursor-pointer line-clamp-2 block"
+              className="text-left hover:text-[#991B1B] transition-colors cursor-pointer line-clamp-2 block"
             >
               {post.title}
             </button>
@@ -56,7 +56,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post, onNavigate, layout = '
           </p>
 
           {/* Author */}
-          <div className="pt-2.5 border-t border-[#EAB308] flex items-center justify-between text-xs text-[#713F12] mt-auto">
+          <div className="pt-2.5 border-t border-[#EAB308]/60 flex items-center justify-between text-xs text-[#713F12] mt-auto">
             <div className="flex items-center gap-2">
               <img
                 src={post.author.avatar}
@@ -67,7 +67,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post, onNavigate, layout = '
             </div>
             <button
               onClick={() => onNavigate(`/post/${post.slug}`)}
-              className="font-bold text-[#0F172A] hover:underline cursor-pointer"
+              className="font-bold text-[#0F172A] hover:text-[#991B1B] hover:underline cursor-pointer"
             >
               Read &rarr;
             </button>
@@ -79,7 +79,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post, onNavigate, layout = '
 
   // Grid layout (default)
   return (
-    <article className="flex flex-col bg-[#FEF9C3] border border-[#EAB308] rounded-xl overflow-hidden hover:border-[#CA8A04] hover:shadow-md transition-all duration-200 group">
+    <article className="flex flex-col bg-white hover:bg-[#FEF9C3] border-2 border-[#EAB308]/60 hover:border-[#CA8A04] rounded-xl overflow-hidden shadow-2xs hover:shadow-md transition-all duration-300 group">
       {/* Thumbnail */}
       <button
         onClick={() => onNavigate(`/post/${post.slug}`)}
@@ -111,7 +111,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post, onNavigate, layout = '
         <h3 className="text-base font-bold leading-snug text-[#1A1A1A] mb-2">
           <button
             onClick={() => onNavigate(`/post/${post.slug}`)}
-            className="text-left hover:text-[#0066CC] transition-colors cursor-pointer line-clamp-2 block"
+            className="text-left hover:text-[#991B1B] transition-colors cursor-pointer line-clamp-2 block"
           >
             {post.title}
           </button>
@@ -123,7 +123,7 @@ export const PostCard: React.FC<PostCardProps> = ({ post, onNavigate, layout = '
         </p>
 
         {/* Author & Date Footer Row */}
-        <div className="pt-3 border-t border-[#EAB308] flex items-center justify-between text-xs text-[#713F12] mt-auto">
+        <div className="pt-3 border-t border-[#EAB308]/60 flex items-center justify-between text-xs text-[#713F12] mt-auto">
           <div className="flex items-center gap-2">
             <img
               src={post.author.avatar}
