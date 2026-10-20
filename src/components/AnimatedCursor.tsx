@@ -48,12 +48,14 @@ export const AnimatedCursor: React.FC = () => {
       const now = performance.now();
       if (now - lastParticleTime.current > 60) {
         lastParticleTime.current = now;
+        const particleColors = ['#DC2626', '#EF4444', '#B91C1C', '#F59E0B'];
+        const randomColor = particleColors[Math.floor(Math.random() * particleColors.length)];
         const newParticle: Particle = {
           id: particleIdRef.current++,
           x: e.clientX,
           y: e.clientY,
           size: Math.random() * 4 + 2,
-          color: Math.random() > 0.5 ? '#EAB308' : '#0066CC',
+          color: randomColor,
         };
         setParticles((prev) => [...prev.slice(-12), newParticle]);
       }
@@ -155,10 +157,10 @@ export const AnimatedCursor: React.FC = () => {
         <div
           className={`w-full h-full rounded-full transition-all duration-200 ${
             isHovering
-              ? 'border-2 border-[#0066CC] bg-[#0066CC]/15 shadow-[0_0_15px_rgba(0,102,204,0.4)] scale-110'
+              ? 'border-2 border-[#DC2626] bg-[#DC2626]/20 shadow-[0_0_16px_rgba(220,38,38,0.5)] scale-110'
               : isClicking
-              ? 'border-2 border-[#CA8A04] bg-[#EAB308]/30 scale-90'
-              : 'border-[1.5px] border-[#EAB308] bg-[#FEF08A]/10 shadow-[0_0_8px_rgba(234,179,8,0.3)]'
+              ? 'border-2 border-[#991B1B] bg-[#991B1B]/30 shadow-[0_0_10px_rgba(153,27,27,0.5)] scale-90'
+              : 'border-[1.5px] border-[#DC2626]/80 bg-[#DC2626]/10 shadow-[0_0_8px_rgba(220,38,38,0.25)]'
           }`}
         />
       </div>
@@ -171,10 +173,10 @@ export const AnimatedCursor: React.FC = () => {
         <div
           className={`w-2 h-2 rounded-full transition-transform duration-150 ${
             isHovering
-              ? 'bg-[#0066CC] scale-150 shadow-[0_0_8px_#0066CC]'
+              ? 'bg-[#DC2626] scale-150 shadow-[0_0_8px_#DC2626]'
               : isClicking
-              ? 'bg-[#EAB308] scale-75'
-              : 'bg-[#1A1A1A] border border-[#EAB308]'
+              ? 'bg-[#991B1B] scale-75'
+              : 'bg-[#1A1A1A] border border-[#DC2626]'
           }`}
         />
       </div>
