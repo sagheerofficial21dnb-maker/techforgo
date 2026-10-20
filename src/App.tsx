@@ -11,6 +11,7 @@ import { CategoryPage } from './views/CategoryPage';
 import { SearchPage } from './views/SearchPage';
 import { StaticPage, StaticPageType } from './views/StaticPage';
 import { NotFoundPage } from './views/NotFoundPage';
+import { AdsTxtView } from './views/AdsTxtView';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -80,9 +81,15 @@ export default function App() {
   } else if (currentPath === '/disclaimer') {
     // 7. Disclaimer
     view = <StaticPage pageType="disclaimer" onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
+  } else if (currentPath === '/ads.txt' || currentPath.endsWith('/ads.txt')) {
+    return <AdsTxtView />;
   } else {
     // 10. 404 Error Page
     view = <NotFoundPage onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
+  }
+
+  if (currentPath === '/ads.txt' || currentPath.endsWith('/ads.txt')) {
+    return <AdsTxtView />;
   }
 
   return (
