@@ -59,7 +59,7 @@
 					<h4 class="tfg-footer-col-title" style="color: #1A1A1A; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;"><?php esc_html_e( 'Editorial Office', 'techforgo' ); ?></h4>
 					<p class="tfg-footer-contact-line" style="color: #422006; font-size: 12px; margin-bottom: 8px;">
 						<strong style="color: #1A1A1A;"><?php esc_html_e( 'Email Desk:', 'techforgo' ); ?></strong>
-						<a href="mailto:sagheerofficial21dnb@gmail.com" style="color: #0066CC; font-weight: 700; text-decoration: none;">sagheerofficial21dnb@gmail.com</a>
+						<a href="mailto:info@techforgo.com" style="color: #991B1B; font-weight: 700; text-decoration: none;">info@techforgo.com</a>
 					</p>
 					<p class="tfg-footer-contact-line" style="color: #422006; font-size: 12px; margin-bottom: 8px;">
 						<strong style="color: #1A1A1A;"><?php esc_html_e( 'Phone / Helpline:', 'techforgo' ); ?></strong>

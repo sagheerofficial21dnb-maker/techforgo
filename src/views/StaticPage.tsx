@@ -126,10 +126,10 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType, onNavigate, on
                       Direct Email
                     </span>
                     <a
-                      href="mailto:sagheerofficial21dnb@gmail.com"
-                      className="text-sm sm:text-base font-bold text-[#1A1A1A] hover:text-[#0066CC] break-all transition-colors block mb-1"
+                      href="mailto:info@techforgo.com"
+                      className="text-sm sm:text-base font-bold text-[#1A1A1A] hover:text-[#991B1B] break-all transition-colors block mb-1"
                     >
-                      sagheerofficial21dnb@gmail.com
+                      info@techforgo.com
                     </a>
                     <p className="text-xs text-[#422006]">
                       Monitored daily for editorial inquiries, submissions, and feedback.
@@ -161,7 +161,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType, onNavigate, on
 
                   {formSubmitted ? (
                     <div className="p-4 bg-[#ECFDF5] border border-[#10B981] rounded-lg text-xs text-[#065F46] font-bold text-center">
-                      &check; Thank you. Your message has been sent to sagheerofficial21dnb@gmail.com. We will respond promptly.
+                      &check; Thank you. Your message has been sent to info@techforgo.com. We will respond promptly.
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -259,7 +259,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType, onNavigate, on
                     </p>
                     <ul className="space-y-1.5 text-[#666666] list-disc pl-5">
                       <li><strong>Log Files:</strong> Standard internet log files including IP addresses, browser types, Internet Service Providers (ISP), date/time stamps, referring/exit pages, and click counts. These are not linked to personally identifiable information.</li>
-                      <li><strong>User Communications:</strong> If you contact us directly (via sagheerofficial21dnb@gmail.com or our contact form), we receive your name, email address, and the contents of your message.</li>
+                      <li><strong>User Communications:</strong> If you contact us directly (via info@techforgo.com or our contact form), we receive your name, email address, and the contents of your message.</li>
                       <li><strong>Newsletter Subscriptions:</strong> If you voluntarily subscribe to our Weekly Technical Dispatch, we store your email address solely to deliver requested briefings.</li>
                     </ul>
                   </section>
@@ -294,7 +294,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType, onNavigate, on
                       <li>The right to restrict processing and object to processing.</li>
                     </ul>
                     <p className="text-[#666666] mt-2">
-                      To exercise any of these rights, contact us at <a href="mailto:sagheerofficial21dnb@gmail.com" className="text-[#0066CC] font-semibold">sagheerofficial21dnb@gmail.com</a>.
+                      To exercise any of these rights, contact us at <a href="mailto:info@techforgo.com" className="text-[#991B1B] font-semibold hover:underline">info@techforgo.com</a>.
                     </p>
                   </section>
                 </div>
@@ -391,7 +391,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType, onNavigate, on
                   <section className="pt-4 border-t border-[#E5E5E5]">
                     <h2 className="text-lg font-bold text-[#1A1A1A] mb-2">4. Contact Information</h2>
                     <p className="text-[#666666]">
-                      If you require any more information or have questions regarding our site disclaimer, please contact us via email at <a href="mailto:sagheerofficial21dnb@gmail.com" className="text-[#0066CC] font-semibold">sagheerofficial21dnb@gmail.com</a> or phone at <strong className="text-[#1A1A1A]">03069256639</strong>.
+                      If you require any more information or have questions regarding our site disclaimer, please contact us via email at <a href="mailto:info@techforgo.com" className="text-[#991B1B] font-semibold hover:underline">info@techforgo.com</a> or phone at <strong className="text-[#1A1A1A]">03069256639</strong>.
                     </p>
                   </section>
                 </div>

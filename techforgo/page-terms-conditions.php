@@ -39,7 +39,7 @@ get_header();
 						<p><?php esc_html_e( 'In no event shall TechForGo, its authors, or editors be liable for any direct or indirect damages arising out of the use or inability to use the materials on this site.', 'techforgo' ); ?></p>
 
 						<h2><?php esc_html_e( '5. Contact Support', 'techforgo' ); ?></h2>
-						<p><?php esc_html_e( 'For inquiries concerning our Terms of Service, contact sagheerofficial21dnb@gmail.com or 03069256639.', 'techforgo' ); ?></p>
+						<p><?php esc_html_e( 'For inquiries concerning our Terms of Service, contact info@techforgo.com or 03069256639.', 'techforgo' ); ?></p>
 
 						<?php the_content(); ?>
 					</div>

@@ -31,8 +31,8 @@ get_header();
 							<span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #0066CC; display: block; margin-bottom: 6px;">
 								<?php esc_html_e( 'Direct Email Desk', 'techforgo' ); ?>
 							</span>
-							<a href="mailto:sagheerofficial21dnb@gmail.com" style="font-size: 15px; font-weight: 700; color: #1A1A1A; word-break: break-all; display: block; margin-bottom: 6px;">
-								sagheerofficial21dnb@gmail.com
+							<a href="mailto:info@techforgo.com" style="font-size: 15px; font-weight: 700; color: #1A1A1A; word-break: break-all; display: block; margin-bottom: 6px;">
+								info@techforgo.com
 							</a>
 							<p style="font-size: 12px; color: #666666; margin: 0;">
 								<?php esc_html_e( 'Monitored daily for editorial inquiries, submissions, and feedback.', 'techforgo' ); ?>
@@ -57,7 +57,7 @@ get_header();
 						<h2 style="font-size: 18px; font-weight: 700; margin-top: 0; margin-bottom: 6px;"><?php esc_html_e( 'Send a Direct Message', 'techforgo' ); ?></h2>
 						<p style="font-size: 13px; color: #666666; margin-bottom: 20px;"><?php esc_html_e( 'We typically review and respond to inquiries within 24–48 business hours.', 'techforgo' ); ?></p>
 
-						<form class="tfg-contact-form" onsubmit="event.preventDefault(); alert('Message successfully sent to sagheerofficial21dnb@gmail.com.');">
+						<form class="tfg-contact-form" onsubmit="event.preventDefault(); alert('Message successfully sent to info@techforgo.com.');">
 							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px;">
 								<div>
 									<label style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px;"><?php esc_html_e( 'Your Name', 'techforgo' ); ?></label>

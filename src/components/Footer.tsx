@@ -103,8 +103,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <div className="space-y-2.5 text-xs text-[#4C0519] leading-relaxed mb-4">
               <p>
                 <strong className="text-[#1A1A1A] block font-bold">Email Desk:</strong>
-                <a href="mailto:sagheerofficial21dnb@gmail.com" className="text-[#991B1B] font-bold hover:underline break-all">
-                  sagheerofficial21dnb@gmail.com
+                <a href="mailto:info@techforgo.com" className="text-[#991B1B] font-bold hover:underline break-all">
+                  info@techforgo.com
                 </a>
               </p>
               <p>

@@ -40,7 +40,7 @@ get_header();
 						<p><?php esc_html_e( 'We want to make sure you are fully aware of all of your data protection rights. Every user is entitled to request copies of personal data, request correction, or request erasure under eligible statutory conditions.', 'techforgo' ); ?></p>
 
 						<h2><?php esc_html_e( '5. Contact the Privacy Officer', 'techforgo' ); ?></h2>
-						<p><?php esc_html_e( 'If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at sagheerofficial21dnb@gmail.com or by calling 03069256639.', 'techforgo' ); ?></p>
+						<p><?php esc_html_e( 'If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at info@techforgo.com or by calling 03069256639.', 'techforgo' ); ?></p>
 
 						<?php the_content(); ?>
 					</div>

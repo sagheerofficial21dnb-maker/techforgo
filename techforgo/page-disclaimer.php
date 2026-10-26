@@ -36,7 +36,7 @@ get_header();
 						<p><?php esc_html_e( 'From our website, you can visit other websites by following hyperlinks to such external sites. While we strive to provide only quality links to useful websites, we have no control over the content and nature of these external sites.', 'techforgo' ); ?></p>
 
 						<h2><?php esc_html_e( '4. Consent and Inquiries', 'techforgo' ); ?></h2>
-						<p><?php esc_html_e( 'By using our website, you hereby consent to our disclaimer and agree to its terms. If you require more information, reach us at sagheerofficial21dnb@gmail.com or 03069256639.', 'techforgo' ); ?></p>
+						<p><?php esc_html_e( 'By using our website, you hereby consent to our disclaimer and agree to its terms. If you require more information, reach us at info@techforgo.com or 03069256639.', 'techforgo' ); ?></p>
 
 						<?php the_content(); ?>
 					</div>
