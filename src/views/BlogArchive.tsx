@@ -12,7 +12,7 @@ interface BlogArchiveProps {
 export const BlogArchive: React.FC<BlogArchiveProps> = ({ onNavigate, onSearchSubmit }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [layoutMode, setLayoutMode] = useState<'grid' | 'list'>('grid');
-  const postsPerPage = 10; // Exactly 10 posts per page constraint!
+  const postsPerPage = 12; // Exactly 12 posts per page (4 rows of 3 compact cards side-by-side)
   
   const totalPages = Math.ceil(POSTS.length / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;
@@ -34,7 +34,7 @@ export const BlogArchive: React.FC<BlogArchiveProps> = ({ onNavigate, onSearchSu
             <span aria-hidden="true">&middot;</span>
             <span>{POSTS.length} Technical Articles</span>
             <span aria-hidden="true">&middot;</span>
-            <span>10 Posts / Page</span>
+            <span>12 Posts / Page (3 &times; 4 Grid)</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1A1A1A] mb-1">
             Blog Archive
@@ -90,13 +90,13 @@ export const BlogArchive: React.FC<BlogArchiveProps> = ({ onNavigate, onSearchSu
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-10">
         <div className="lg:col-span-7">
           {layoutMode === 'grid' ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
               {currentPosts.map((post) => (
                 <PostCard key={post.id} post={post} onNavigate={onNavigate} layout="grid" />
               ))}
             </div>
           ) : (
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
               {currentPosts.map((post) => (
                 <PostCard key={post.id} post={post} onNavigate={onNavigate} layout="list" />
               ))}
@@ -109,7 +109,7 @@ export const BlogArchive: React.FC<BlogArchiveProps> = ({ onNavigate, onSearchSu
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-3.5 h-10 flex items-center justify-center text-xs font-semibold rounded bg-[#FFFFFF] border border-[#E5E5E5] text-[#1A1A1A] hover:border-[#0066CC] hover:text-[#0066CC] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                className="px-3.5 h-9 flex items-center justify-center text-xs font-bold rounded-lg bg-white border border-[#CA8A04] text-[#1A1A1A] hover:bg-[#FEF08A] hover:text-[#991B1B] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer shadow-2xs"
               >
                 &larr; Previous
               </button>
@@ -118,10 +118,10 @@ export const BlogArchive: React.FC<BlogArchiveProps> = ({ onNavigate, onSearchSu
                 <button
                   key={pageNum}
                   onClick={() => handlePageChange(pageNum)}
-                  className={`w-10 h-10 flex items-center justify-center text-xs font-semibold rounded transition-colors cursor-pointer ${
+                  className={`w-9 h-9 flex items-center justify-center text-xs font-bold rounded-lg transition-colors cursor-pointer shadow-2xs ${
                     currentPage === pageNum
-                      ? 'bg-[#0066CC] text-[#FFFFFF] border border-[#0066CC]'
-                      : 'bg-[#FFFFFF] text-[#1A1A1A] border border-[#E5E5E5] hover:border-[#0066CC] hover:text-[#0066CC]'
+                      ? 'bg-[#991B1B] text-white border-2 border-[#7F1D1D]'
+                      : 'bg-white text-[#1A1A1A] border border-[#CA8A04] hover:bg-[#FEF08A] hover:text-[#991B1B]'
                   }`}
                 >
                   {pageNum}
@@ -131,14 +131,14 @@ export const BlogArchive: React.FC<BlogArchiveProps> = ({ onNavigate, onSearchSu
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-3.5 h-10 flex items-center justify-center text-xs font-semibold rounded bg-[#FFFFFF] border border-[#E5E5E5] text-[#1A1A1A] hover:border-[#0066CC] hover:text-[#0066CC] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                className="px-3.5 h-9 flex items-center justify-center text-xs font-bold rounded-lg bg-white border border-[#CA8A04] text-[#1A1A1A] hover:bg-[#FEF08A] hover:text-[#991B1B] disabled:opacity-40 disabled:cursor-not-allowed transition-colors cursor-pointer shadow-2xs"
               >
                 Next &rarr;
               </button>
             </nav>
           )}
 
-          <div className="text-center text-xs text-[#666666] mt-3">
+          <div className="text-center text-xs text-[#713F12] mt-3 font-medium">
             Showing {startIndex + 1} &ndash; {Math.min(startIndex + postsPerPage, POSTS.length)} of {POSTS.length} articles (Page {currentPage} of {totalPages})
           </div>
         </div>

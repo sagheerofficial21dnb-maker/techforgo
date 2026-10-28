@@ -1249,6 +1249,101 @@ export const POSTS: Post[] = [
     imageAlt: 'Commercial 3D featured image with ROADMAP TO AGI 2026 typography and cognitive neural rings',
     visualPrompt: 'Universal problem-solving cognitive architecture, ethical AI alignment rings, roadmap to AGI 2026 with 3D text ROADMAP TO AGI 2026',
   },
+  {
+    id: '21',
+    slug: 'gpu-architecture-parallel-computing-deep-learning',
+    title: 'GPU Architecture: Microarchitectural Foundations of Streaming Multiprocessors, Tensor Cores, and Parallel Compute Pipelines',
+    deck: 'A technical teardown of graphics processing units: dissecting SIMT execution models, warp schedulers, mixed-precision matrix arithmetic, register cache arbitration, and HBM memory subsystems.',
+    excerpt: 'From rasterization to frontier AI training, GPU architecture has become the computing backbone of modern engineering. This deep dive examines the internal silicon mechanics powering parallel processors.',
+    introduction: 'Over the past two decades, computing architecture has shifted decisively from latency-optimized sequential processors toward throughput-optimized parallel accelerators. At the epicenter of this transformation is the Graphics Processing Unit (GPU). Originally engineered for fixed-function polygon rasterization, modern GPU architecture has evolved into a massively multi-threaded compute platform capable of executing trillions of calculations per second. Where conventional CPUs dedicate the majority of silicon area to complex branch predictors, out-of-order execution windows, and deep caches to minimize instruction latency for sequential threads, GPU architecture embraces an opposite philosophy. Modern GPUs allocate upwards of seventy percent of active die area directly to execution ALUs, prioritizing aggregate mathematical throughput over individual thread latency through hardware multithreading.',
+    sections: [
+      {
+        heading: 'The SIMT Execution Paradigm and Hardware Warp Scheduling',
+        level: 'h2',
+        paragraphs: [
+          'The architectural foundation of contemporary GPU computing is the Single Instruction, Multiple Threads (SIMT) execution model. Unlike conventional CPU SIMD vector processing—where a single instruction operates across packed data lanes within a shared vector register—SIMT instructions apply scalar operations across an ensemble of independent parallel threads simultaneously.',
+          'In hardware, parallel threads are grouped into atomic execution clusters termed warps. In NVIDIA architectures, a warp comprises 32 parallel threads, whereas AMD executes wavefronts of 32 or 64 threads. The hardware warp scheduler dispatches instructions in lock-step: every thread in an active warp executes the identical instruction at the exact same physical clock cycle, but operates on its own dedicated register space and memory addresses.',
+          'The primary architectural challenge of SIMT arises during conditional branching. When distinct threads within a single warp take divergent code paths, the scheduler serializes execution across both paths using execution mask registers. Threads not taking the active path are temporarily idled, reducing throughput. Modern GPU architectures mitigate this penalty using independent thread scheduling, which maintains dedicated program counters per thread and uses convergence barriers to reconcile divergent paths.',
+        ],
+        bullets: [
+          'Hardware Thread Allocation: A single multiprocessor hosts up to 2,048 resident active threads concurrently in hardware without operating system intervention.',
+          'Zero-Overhead Context Switching: Warp schedulers switch between stalled memory-waiting warps and compute-ready warps in a single cycle with zero register spilling overhead.',
+          'Branch Divergence Mitigation: Hardware stack convergence algorithms dynamically track predicated execution masks to synchronize divergent instruction streams.',
+        ],
+      },
+      {
+        heading: 'Anatomy of the Streaming Multiprocessor: ALUs, Registers, and Dispatch Units',
+        level: 'h2',
+        paragraphs: [
+          'The fundamental modular computational block of the GPU is the Streaming Multiprocessor (SM), termed a Compute Unit in alternative taxonomies. A flagship server processor integrates between 80 and 160 discrete SMs distributed across multiple processing clusters. Each SM is partitioned into distinct sub-cores equipped with dedicated instruction caches, warp schedulers, dispatch units, and arithmetic pipelines.',
+          'The execution pipeline within each sub-core comprises specialized execution units engineered for distinct numerical representations. Primary among these are FP32 Arithmetic Logic Units for single-precision calculations, accompanied by parallel INT32 ALUs capable of executing integer addressing concurrently with floating-point math within the same cycle. Specialized Function Units evaluate transcendental mathematical functions—such as square roots, sines, and logarithms—using hardware-accelerated approximations that avoid multi-cycle software emulation.',
+          'Powering this massive array of execution units is an extraordinarily wide register file. In modern GPU architectures, a single SM features 256 kilobytes of static register memory, organized as 65,536 individual 32-bit registers. Because the GPU holds the register context of dozens of resident warps simultaneously in hardware, register allocation per thread is the primary factor governing occupancy. Excessive register usage per thread forces the scheduler to reduce active warp counts, limiting latency hiding capability.',
+        ],
+      },
+      {
+        heading: 'Tensor Cores and the Evolution of Mixed-Precision Matrix Engines',
+        level: 'h2',
+        paragraphs: [
+          'The greatest architectural leap in recent GPU microarchitecture is the transition from scalar arithmetic units to specialized mixed-precision matrix multiplication engines known as Tensor Cores. Traditional FP32 ALUs require distinct instruction cycles to perform element-wise scalar multiplications and additions. In contrast, Tensor Cores execute fused multiply-accumulate operations directly on dense numerical matrices in hardware within a single instruction cycle.',
+          'During a matrix multiply-accumulate operation, the hardware computes the product of two input matrices and accumulates the result into a third matrix. By operating on mixed-precision data formats—such as multiplying low-precision FP16, BF16, or FP8 matrices and accumulating into higher-precision FP32 accumulators—Tensor Cores deliver an order of magnitude higher compute throughput while drastically reducing memory bandwidth consumption and energy dissipation per operation.',
+          'Modern architectures incorporate specialized hardware decompression and structured sparsity support directly into Tensor Core silicon. With 2:4 structured sparsity, the hardware skips mathematical operations on zero operands, doubling effective mathematical throughput to hundreds of teraflops per individual SM.',
+        ],
+      },
+      {
+        heading: 'Memory Subsystems: Register Files, Shared Memory, and HBM3e Interconnects',
+        level: 'h2',
+        paragraphs: [
+          'Massive arithmetic throughput requires a memory subsystem capable of supplying operands rapidly enough to prevent ALU starvation. GPU architecture resolves the memory wall through a tiered hierarchy. At the summit sits the register file, delivering aggregate bandwidth exceeding dozens of terabytes per second across all SMs.',
+          'Directly adjacent to the register file is the configurable Shared Memory and L1 Data Cache. Modern GPUs implement unified on-chip static RAM—often 128 to 256 kilobytes per SM—dynamically partitioned into hardware L1 cache or software-managed scratchpad memory. This scratchpad memory allows threads within the same block to cooperatively share data, reuse intermediate values, and bypass off-chip memory transactions. Shared memory is organized into 32 distinct memory banks, allowing conflict-free parallel access across threads.',
+          'At the off-chip base of the memory hierarchy sits High-Bandwidth Memory (HBM3e). Unlike conventional GDDR6 memory interfacing through serial PCB traces, HBM utilizes vertically stacked DRAM dies connected by thousands of Through-Silicon Vias. These stacks connect directly to the GPU processor via a 2.5D silicon interposer over a 1,024-bit wide interface, delivering over eight terabytes per second of raw, sustained memory bandwidth.',
+        ],
+      },
+      {
+        heading: 'Asynchronous Compute Pipelines and Tensor Memory Acceleration',
+        level: 'h3',
+        paragraphs: [
+          'In legacy GPU pipelines, moving data from global device memory into local shared memory required execution threads to actively issue load instructions, hold values in temporary registers, and write them to shared memory. This paradigm consumed valuable register file space and wasted ALU cycles on memory staging.',
+          'Contemporary GPU microarchitectures eliminate this overhead through hardware Asynchronous Copy Engines and Tensor Memory Accelerators (TMA). The TMA is a dedicated hardware engine that accepts tensor descriptors and directly orchestrates multidimensional tensor copies between global memory and shared memory asynchronously, bypassing the SM register file. While the TMA streams tensor tiles over wide memory crossbars, the SM ALUs and Tensor Cores remain fully dedicated to mathematical processing, decoupling data motion latency from arithmetic computation.',
+        ],
+      },
+    ],
+    comparisonTable: {
+      caption: 'Microarchitectural Comparison Across Modern GPU Generations',
+      headers: ['GPU Architecture', 'Process Node', 'SM Count', 'Memory Bandwidth', 'Peak Tensor FLOPS', 'Interconnect Speed'],
+      rows: [
+        ['Pascal', '16nm FinFET', '56 SMs', '732 GB/s HBM2', '21.2 TFLOPS (FP16)', '160 GB/s NVLink 1.0'],
+        ['Volta', '12nm FFN', '80 SMs', '900 GB/s HBM2', '125 TFLOPS (FP16)', '300 GB/s NVLink 2.0'],
+        ['Ampere', '7nm Custom', '108 SMs', '2,039 GB/s HBM2e', '312 TFLOPS (TF32)', '600 GB/s NVLink 3.0'],
+        ['Hopper', '4N TSMC', '132 SMs', '3,350 GB/s HBM3', '1,979 TFLOPS (FP8)', '900 GB/s NVLink 4.0'],
+        ['Blackwell', '4NP TSMC', '160 SMs', '8,000 GB/s HBM3e', '4,500 TFLOPS (FP4)', '1,800 GB/s NVLink 5.0'],
+      ],
+    },
+    conclusion: 'Modern GPU architecture has transcended its origins as a specialized graphics coprocessor to become the premier microarchitectural foundation of scientific computing, machine learning, and high-performance engineering. By harmonizing massive SIMT thread parallelism, specialized mixed-precision Tensor Cores, hierarchical on-chip scratchpad memories, and terabyte-scale HBM interconnects, GPU engineers have continuously surmounted semiconductor memory wall and power constraints. As physical reticle limits push the industry toward modular multi-die chiplets and co-packaged optical interconnects, the underlying principles of warp scheduling, data locality optimization, and hardware-accelerated tensor math will remain the definitive blueprint for accelerated computing.',
+    faqs: [
+      {
+        question: 'What is the primary difference between a CPU core and a GPU Streaming Multiprocessor?',
+        answer: 'A CPU core is engineered for ultra-low latency on single instruction threads, featuring complex out-of-order execution pipelines and branch prediction logic. In contrast, a GPU Streaming Multiprocessor is designed for aggregate throughput, allocating the majority of its silicon area to execution ALUs and using thousands of active hardware threads to hide memory access latencies.',
+      },
+      {
+        question: 'Why does branch divergence degrade GPU computational performance?',
+        answer: 'Because GPU threads execute within lock-step 32-thread warps under the SIMT model, threads encountering divergent conditional paths cannot execute independently on separate control lines. The warp scheduler must serialize each branch path sequentially while masking off inactive threads, causing ALU idling and reduced computational efficiency.',
+      },
+      {
+        question: 'How do Tensor Cores differ from conventional FP32 floating-point units?',
+        answer: 'Standard FP32 units perform scalar multiply and add operations on single numerical values over distinct instruction cycles. Tensor Cores are specialized hardware matrix engines that perform fused multiply-accumulate operations on entire matrix blocks simultaneously within a single clock cycle, operating on mixed-precision data formats like FP16, BF16, and FP8 with orders of magnitude higher throughput.',
+      },
+    ],
+    category: 'Hardware Architecture',
+    categorySlug: 'hardware-architecture',
+    tags: ['GPU Architecture', 'Streaming Multiprocessors', 'Tensor Cores', 'SIMT', 'HBM3e', 'High Performance Compute'],
+    date: 'Oct 26, 2026',
+    isoDate: '2026-10-26',
+    readTime: '9 min read',
+    author: AUTHORS.marcus_chen,
+    featuredImage: '/images/cybersecurity_neural_core_1791528970569.jpg',
+    imageAlt: 'Photomicrograph of modern high-performance GPU silicon die architecture with gold wire bonding and micro-circuits',
+    visualPrompt: 'High performance GPU processor die microarchitecture with golden wire bonds, silicon packaging interposers, and glowing parallel compute cores',
+  },
 ];
 
 export const CATEGORIES = [
@@ -1273,7 +1368,7 @@ export const CATEGORIES = [
   {
     name: 'Hardware Architecture',
     slug: 'hardware-architecture' as const,
-    count: 5,
-    description: 'Silicon photonics, cryogenic quantum interconnects, CXL 3.1 memory pooling, CoWoS 2.5D/3D advanced chiplet packaging, RISC-V vector extensions, and analog optical computing.',
+    count: 6,
+    description: 'Silicon photonics, GPU microarchitecture, cryogenic quantum interconnects, CXL 3.1 memory pooling, CoWoS 2.5D/3D advanced chiplet packaging, and RISC-V vector extensions.',
   },
 ];

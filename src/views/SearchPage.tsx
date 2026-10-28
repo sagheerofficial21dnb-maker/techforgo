@@ -115,13 +115,13 @@ export const SearchPage: React.FC<SearchPageProps> = ({ initialQuery, onNavigate
         <div className="lg:col-span-7">
           {matchingPosts.length > 0 ? (
             layoutMode === 'grid' ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {matchingPosts.map((post) => (
                   <PostCard key={post.id} post={post} onNavigate={onNavigate} layout="grid" />
                 ))}
               </div>
             ) : (
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-4">
                 {matchingPosts.map((post) => (
                   <PostCard key={post.id} post={post} onNavigate={onNavigate} layout="list" />
                 ))}
@@ -139,7 +139,7 @@ export const SearchPage: React.FC<SearchPageProps> = ({ initialQuery, onNavigate
                 onClick={() => onNavigate('/blog')}
                 className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0066CC] rounded"
               >
-                Browse All 10-Post Journal
+                Browse Complete Journal Archive
               </button>
             </div>
           )}

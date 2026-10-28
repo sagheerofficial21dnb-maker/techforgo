@@ -91,7 +91,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categorySlug, onNavi
         <div className="lg:col-span-7">
           {matchingPosts.length > 0 ? (
             layoutMode === 'grid' ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                 {matchingPosts.map((post) => (
                   <PostCard key={post.id} post={post} onNavigate={onNavigate} layout="grid" />
                 ))}

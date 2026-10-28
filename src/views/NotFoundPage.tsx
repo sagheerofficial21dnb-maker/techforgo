@@ -54,7 +54,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate, onSearch
           </button>
           <span>&middot;</span>
           <button onClick={() => onNavigate('/blog')} className="hover:underline cursor-pointer">
-            10-Article Blog Archive
+            Full Blog Archive
           </button>
           <span>&middot;</span>
           <button onClick={() => onNavigate('/about')} className="hover:underline cursor-pointer">
