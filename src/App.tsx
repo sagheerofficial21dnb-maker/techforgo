@@ -15,6 +15,18 @@ import { AdsTxtView } from './views/AdsTxtView';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
+    // Handle SPA redirects from 404.html (e.g. GitHub Pages /?p=/post/slug or /?/post/slug)
+    const search = window.location.search;
+    if (search.startsWith('?p=')) {
+      const redirected = decodeURIComponent(search.replace('?p=', ''));
+      window.history.replaceState({}, '', redirected + window.location.hash);
+      return redirected;
+    }
+    if (search.startsWith('?/')) {
+      const decoded = search.slice(1).split('&').map(s => s.replace(/~and~/g, '&')).join('?');
+      window.history.replaceState({}, '', decoded + window.location.hash);
+      return decoded;
+    }
     return window.location.pathname && window.location.pathname !== ''
       ? window.location.pathname
       : '/';
@@ -41,54 +53,58 @@ export default function App() {
     navigateTo(`/search?q=${encodeURIComponent(query)}`);
   };
 
-  // Route Resolution for All 10 Required Pages
+  // Robust path normalization (strips queries, hashes, and trailing slashes)
+  const normalizedPath = (currentPath || '/')
+    .split('?')[0]
+    .split('#')[0]
+    .replace(/\/+$/, '') || '/';
+
+  // Route Resolution
   let view = <FrontPage onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
 
-  if (currentPath === '/' || currentPath === '') {
-    // 1. Home (front-page.php)
+  if (normalizedPath === '/' || normalizedPath === '') {
+    // 1. Home
     view = <FrontPage onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath === '/blog' || currentPath === '/home') {
-    // 2. Blog (home.php with 10 articles/page + pagination)
+  } else if (normalizedPath === '/blog' || normalizedPath === '/home') {
+    // 2. Blog Archive
     view = <BlogArchive onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath.startsWith('/post/')) {
-    const slug = currentPath.replace('/post/', '').split('?')[0];
-    const post = POSTS.find((p) => p.slug === slug);
+  } else if (normalizedPath.startsWith('/post/')) {
+    // Post slug extraction with thorough normalization
+    const rawSlug = normalizedPath.replace(/^\/post\//, '');
+    const cleanSlug = decodeURIComponent(rawSlug).replace(/\/+$/, '').trim().toLowerCase();
+    const post = POSTS.find((p) => p.slug.toLowerCase() === cleanSlug);
     if (post) {
       view = <SinglePost post={post} onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
     } else {
       view = <NotFoundPage onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
     }
-  } else if (currentPath.startsWith('/category/')) {
-    // 8. Category Archive Pages
-    const slug = currentPath.replace('/category/', '').replace(/\/$/, '').split('?')[0];
-    view = <CategoryPage categorySlug={slug} onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath.startsWith('/search')) {
-    // 9. Search Results Page
+  } else if (normalizedPath.startsWith('/category/')) {
+    // Category slug extraction with thorough normalization
+    const rawSlug = normalizedPath.replace(/^\/category\//, '');
+    const cleanSlug = decodeURIComponent(rawSlug).replace(/\/+$/, '').trim().toLowerCase();
+    view = <CategoryPage categorySlug={cleanSlug} onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
+  } else if (normalizedPath.startsWith('/search')) {
+    // Search Results Page
     const query = searchQuery || new URLSearchParams(window.location.search).get('q') || 'Quantum';
     view = <SearchPage initialQuery={query} onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath === '/about') {
-    // 3. About Us
+  } else if (normalizedPath === '/about') {
     view = <StaticPage pageType="about" onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath === '/contact') {
-    // 4. Contact Us
+  } else if (normalizedPath === '/contact') {
     view = <StaticPage pageType="contact" onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath === '/privacy-policy') {
-    // 5. Privacy Policy
+  } else if (normalizedPath === '/privacy-policy') {
     view = <StaticPage pageType="privacy-policy" onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath === '/terms' || currentPath === '/terms-and-conditions') {
-    // 6. Terms & Conditions
+  } else if (normalizedPath === '/terms' || normalizedPath === '/terms-and-conditions') {
     view = <StaticPage pageType="terms" onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath === '/disclaimer') {
-    // 7. Disclaimer
+  } else if (normalizedPath === '/disclaimer') {
     view = <StaticPage pageType="disclaimer" onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
-  } else if (currentPath === '/ads.txt' || currentPath.endsWith('/ads.txt')) {
+  } else if (normalizedPath === '/ads.txt' || currentPath.includes('ads.txt')) {
     return <AdsTxtView />;
   } else {
-    // 10. 404 Error Page
+    // 404 Error Page
     view = <NotFoundPage onNavigate={navigateTo} onSearchSubmit={handleSearchSubmit} />;
   }
 
-  if (currentPath === '/ads.txt' || currentPath.endsWith('/ads.txt')) {
+  if (normalizedPath === '/ads.txt' || currentPath.includes('ads.txt')) {
     return <AdsTxtView />;
   }
 

@@ -32,6 +32,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, onSearchSubmit, cu
 
   const recentPosts = POSTS.filter((p) => p.id !== currentPostId).slice(0, 4);
 
+  const handleLink = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) {
+      return;
+    }
+    e.preventDefault();
+    onNavigate(path);
+  };
+
   return (
     <aside className="space-y-8">
       {/* Search Widget */}
@@ -68,9 +76,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, onSearchSubmit, cu
         <ul className="space-y-4">
           {recentPosts.map((post) => (
             <li key={post.id} className="flex gap-3 items-start p-1.5 rounded-lg hover:bg-[#FEF08A]/60 transition-colors">
-              <button
-                onClick={() => onNavigate(`/post/${post.slug}`)}
-                className="w-20 aspect-16/10 rounded overflow-hidden shrink-0 bg-[#F5F5F5] border border-[#CA8A04]/40 cursor-pointer"
+              <a
+                href={`/post/${post.slug}`}
+                onClick={(e) => handleLink(e, `/post/${post.slug}`)}
+                className="w-20 aspect-16/10 rounded overflow-hidden shrink-0 bg-[#F5F5F5] border border-[#CA8A04]/40 cursor-pointer block"
+                aria-label={post.title}
               >
                 <img
                   src={post.featuredImage}
@@ -78,14 +88,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, onSearchSubmit, cu
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
                   loading="lazy"
                 />
-              </button>
+              </a>
               <div className="flex-1 min-w-0">
-                <button
-                  onClick={() => onNavigate(`/post/${post.slug}`)}
+                <a
+                  href={`/post/${post.slug}`}
+                  onClick={(e) => handleLink(e, `/post/${post.slug}`)}
                   className="text-[13px] font-bold leading-snug text-[#1A1A1A] hover:text-[#991B1B] transition-colors text-left line-clamp-2 cursor-pointer mb-1 block"
                 >
                   {post.title}
-                </button>
+                </a>
                 <div className="text-[11px] text-[#713F12] flex items-center gap-1.5">
                   <time dateTime={post.isoDate}>{post.date}</time>
                   <span aria-hidden="true">&middot;</span>
@@ -105,15 +116,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ onNavigate, onSearchSubmit, cu
         <ul className="divide-y divide-[#EAB308]/50">
           {CATEGORIES.map((cat) => (
             <li key={cat.slug}>
-              <button
-                onClick={() => onNavigate(`/category/${cat.slug}`)}
+              <a
+                href={`/category/${cat.slug}`}
+                onClick={(e) => handleLink(e, `/category/${cat.slug}`)}
                 className="w-full flex items-center justify-between py-2.5 text-sm font-semibold text-[#1A1A1A] hover:text-[#991B1B] transition-colors cursor-pointer text-left"
               >
                 <span>{cat.name}</span>
                 <span className="text-xs font-mono font-bold text-[#713F12] tabular-nums">
                   {cat.count}
                 </span>
-              </button>
+              </a>
             </li>
           ))}
         </ul>

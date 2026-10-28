@@ -8,6 +8,14 @@ interface ArticleTickerProps {
 export const ArticleTicker: React.FC<ArticleTickerProps> = ({ onNavigate }) => {
   const recentArticles = POSTS.slice(0, 8);
 
+  const handleLink = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) {
+      return;
+    }
+    e.preventDefault();
+    onNavigate(path);
+  };
+
   return (
     <section
       className="w-full bg-[#059669] border-b border-[#047857] text-white overflow-hidden select-none shadow-xs"
@@ -28,13 +36,14 @@ export const ArticleTicker: React.FC<ArticleTickerProps> = ({ onNavigate }) => {
             {/* First sequence */}
             {recentArticles.map((article) => (
               <span key={`first-${article.id}`} className="inline-flex items-center text-xs whitespace-nowrap">
-                <button
-                  onClick={() => onNavigate(`/post/${article.slug}`)}
+                <a
+                  href={`/post/${article.slug}`}
+                  onClick={(e) => handleLink(e, `/post/${article.slug}`)}
                   className="text-white hover:text-[#D1FAE5] font-semibold transition-colors cursor-pointer px-3 text-left"
                   title={article.title}
                 >
                   {article.title}
-                </button>
+                </a>
                 <span className="text-[#A7F3D0] font-bold select-none px-1" aria-hidden="true">
                   &bull;
                 </span>
@@ -44,13 +53,14 @@ export const ArticleTicker: React.FC<ArticleTickerProps> = ({ onNavigate }) => {
             {/* Second sequence for seamless loop */}
             {recentArticles.map((article) => (
               <span key={`second-${article.id}`} className="inline-flex items-center text-xs whitespace-nowrap" aria-hidden="true">
-                <button
-                  onClick={() => onNavigate(`/post/${article.slug}`)}
+                <a
+                  href={`/post/${article.slug}`}
+                  onClick={(e) => handleLink(e, `/post/${article.slug}`)}
                   tabIndex={-1}
                   className="text-white hover:text-[#D1FAE5] font-semibold transition-colors cursor-pointer px-3 text-left"
                 >
                   {article.title}
-                </button>
+                </a>
                 <span className="text-[#A7F3D0] font-bold select-none px-1">
                   &bull;
                 </span>
