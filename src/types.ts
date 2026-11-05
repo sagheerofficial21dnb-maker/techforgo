@@ -41,7 +41,7 @@ export interface Post {
   };
   pullQuote?: string;
   category: string;
-  categorySlug: 'artificial-intelligence' | 'cloud-infrastructure' | 'cybersecurity' | 'hardware-architecture';
+  categorySlug: 'artificial-intelligence' | 'cloud-infrastructure' | 'cybersecurity' | 'hardware-architecture' | 'software-engineering';
   tags: string[];
   date: string;
   isoDate: string;

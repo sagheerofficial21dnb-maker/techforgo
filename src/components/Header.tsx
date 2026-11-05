@@ -26,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onSearc
     { label: 'Cloud & DevOps', path: '/category/cloud-infrastructure' },
     { label: 'Cyber Defense', path: '/category/cybersecurity' },
     { label: 'Hardware', path: '/category/hardware-architecture' },
+    { label: 'Software Eng', path: '/category/software-engineering' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
   ];
